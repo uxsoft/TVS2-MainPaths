@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -10,6 +11,8 @@ namespace TVS2
         public List<Tuple<int, int>> Edges { get; set; } = new List<Tuple<int, int>>();
         public int StartVertex { get; set; } = 0;
         public int EndVertex { get; set; }
+
+        static StreamWriter sw = new StreamWriter(File.OpenWrite("log.txt"));
 
         public void Calculate()
         {
@@ -76,6 +79,7 @@ namespace TVS2
                     if (Joinable(tuple, tuple2))
                     {
                         nextLayer.Add(tuple.Append(tuple2.Last()));
+                        Console.WriteLine(string.Join(" ", tuple.Append(tuple2.Last())));
                     }
                 }
             }
